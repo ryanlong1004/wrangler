@@ -39,3 +39,15 @@ versionfile_source = "src/wrangler/_version.py"
 versionfile_build = "wrangler/_version.py"
 tag_prefix = ""
 # parentdir_prefix = "myproject-"
+
+[tool.bumpver]
+current_version = "0.0.1"
+version_pattern = "MAJOR.MINOR.PATCH"
+commit_message = "bump version {old_version} -> {new_version}"
+commit = true
+tag = true
+push = true
+
+[tool.bumpver.file_patterns]
+"pyproject.toml" = ['version = "{current_version}"']
+"README.md" = ["{pep440_version}"]
