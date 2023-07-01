@@ -26,8 +26,8 @@ dev = ["black", "bumpver", "isort", "pip-tools", "pytest", "twine", "build"]
 wrangler = "src.__main__:main"
 
 [project.urls]
-"Homepage" = "https://github.com/pypa/wrangler"
-"Bug Tracker" = "https://github.com/pypa/wrangler/issues"
+"Homepage" = "https://github.com/pypa/gwf-wrangler"
+"Bug Tracker" = "https://github.com/pypa/gwf-wrangler/issues"
 
 [tool.setuptools.packages]
 find = {} # Scan the project directory with the default parameters
