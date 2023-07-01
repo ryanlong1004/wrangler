@@ -110,7 +110,8 @@ class Script:
 
 def to_lua(_script: Script, **kwargs) -> list[str]:
     """converts a Script instance to a lua script"""
-    order = ORDER if kwargs.get("order") is None else kwargs.get("order")
+    order = kwargs.get("order")
+    order = ORDER if order is None else order
     results = []
     for key in order:
         for _line in MAPPER_PROPS[key](_script.get(key, None)):
