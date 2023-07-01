@@ -1,0 +1,6 @@
+help([[Load environment to run prep job on WCOSS2]])
+load(pathJoin("hdf5", "8"))
+load(pathJoin("netcdf", "10"))
+whatis("prep run environment")
+prepend_path("MODULEPATH", pathJoin("/lfs/h2/emc/global/save/emc.global/git/prepobs/module"))
+load(pathJoin("prepobs", "11"))

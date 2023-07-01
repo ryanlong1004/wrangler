@@ -31,13 +31,12 @@ def modules(values: list[str]) -> list[str]:
         return results
     for value in ensure_list(values):
         key, _value = value.split("/")
-        results.append(f'load(pathJoin("{key}", "{os.environ.get(_value)}"))\n')
+        results.append(f'load(pathJoin("{key}", "{os.getenv(_value[2: -1])}"))\n')
     return results
 
 
 def module_paths(values: list[str]) -> list[str]:
     """returns list of PosixPaths"""
-    print(values)
     if not values:
         return []
     return [
