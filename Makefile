@@ -18,10 +18,7 @@ format:
 	docformatter
 
 publish:
-	pip-compile --extra dev pyproject.toml
-	python -m build
-	twine check dist/*
-	twine upload dist/*
+	twine upload dist/* --verbose --skip-existing
 
 lint:
 	pylint **/[^_]*.py && echo "linting"
