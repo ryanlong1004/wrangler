@@ -37,9 +37,10 @@ def modules(values: list[str]) -> list[str]:
 
 def module_paths(values: list[str]) -> list[str]:
     """returns list of PosixPaths"""
+    print(values)
     if not values:
         return []
-    return [f'prepend_path("MODULEPATH", pathJoin("{_path}"))\n' for _path in values]
+    return [f'prepend_path("MODULEPATH", pathJoin("{_path}"))\n' for _path in values if _path != 'None']
 
 
 def what_is(values: list[str]) -> list[str]:
