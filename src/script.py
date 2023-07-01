@@ -5,7 +5,7 @@ from typing import Any
 
 # Configuration
 
-ORDER = ["modulepaths", "modules", "help", "environment", "whatis", "extra"]
+ORDER = ["help", "modulepaths", "modules", "environment", "whatis", "extra"]
 
 
 def ensure_list(value):
@@ -40,7 +40,11 @@ def module_paths(values: list[str]) -> list[str]:
     print(values)
     if not values:
         return []
-    return [f'prepend_path("MODULEPATH", pathJoin("{_path}"))\n' for _path in values if _path != 'None']
+    return [
+        f'prepend_path("MODULEPATH", pathJoin("{_path}"))\n'
+        for _path in values
+        if _path != "None"
+    ]
 
 
 def what_is(values: list[str]) -> list[str]:

@@ -23,7 +23,7 @@ dev = ["black", "bumpver", "isort", "pip-tools", "pytest"]
 
 
 [project.scripts]
-wrangler = "src.wrangler.__main__:main"
+wrangler = "src.__main__:main"
 
 [project.urls]
 "Homepage" = "https://github.com/pypa/wrangler"

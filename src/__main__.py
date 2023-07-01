@@ -6,6 +6,7 @@ from pathlib import Path
 import yaml
 
 from src.script import Script, find_script, to_lua
+from src.cli import get_work
 
 
 def load_scripts_from_yamls(_paths: list[Path]) -> list[Script]:
@@ -46,12 +47,11 @@ def main():
         datefmt="%Y-%m-%d %H:%M:%S",
         filename="wrangler.log",
     )
-
-    _input = [
-        Path("./tests/fixtures/test.yaml"),
-        Path("./tests/fixtures/test copy.yaml"),
-    ]
-    write_scripts_to_lua(Path("./"), load_scripts_from_yamls(_input), "common")
+    data = get_work()
+    _input = data['queue']
+    output_path = Path(data['output_path'])
+    output_path.mkdir(parents=True, exist_ok=True)
+    write_scripts_to_lua(output_path, load_scripts_from_yamls(_input), "common")
 
 
 if __name__ == "__main__":

@@ -7,7 +7,10 @@ build:
 update-dependencies:
 	pip-compile --extra dev pyproject.toml
 
-dev:
+install:
+	pip install -e .
+
+install-dev:
 	pip install -e '.[dev]'
 
 format:
