@@ -6,7 +6,7 @@ from pathlib import Path
 import yaml
 
 from src.script import Script, find_script, to_lua
-from src.cli import get_work
+from src.cli import get_cli_data
 
 
 def load_scripts_from_yamls(_paths: list[Path]) -> list[Script]:
@@ -47,9 +47,9 @@ def main():
         datefmt="%Y-%m-%d %H:%M:%S",
         filename="wrangler.log",
     )
-    data = get_work()
-    _input = data['queue']
-    output_path = Path(data['output_path'])
+    data = get_cli_data()
+    _input = data["queue"]
+    output_path = Path(data["output_path"])
     output_path.mkdir(parents=True, exist_ok=True)
     write_scripts_to_lua(output_path, load_scripts_from_yamls(_input), "common")
 
