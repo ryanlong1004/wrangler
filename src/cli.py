@@ -2,12 +2,13 @@
 import argparse
 import glob
 import pathlib
+import sys
 
 
 parser = argparse.ArgumentParser(
     prog="wrangler",
     description="Parses and transcribes yaml files to lua scripts",
-    epilog="Text at the bottom of help",
+    epilog="Example: wrangler --output-path ./temp file.yaml path",
 )
 
 parser.add_argument("paths", nargs="*", type=pathlib.Path)
@@ -31,9 +32,8 @@ def get_queue(_paths):
 
 def get_cli_data():
     """returns an object of user inputted data"""
+    if len(sys.argv) == 1:
+        parser.print_help(sys.stderr)
+        sys.exit(1)
     args = parser.parse_args()
     return {"output_path": args.output_path, "queue": get_queue(args.paths)}
-
-
-if __name__ == "__main__":
-    pass
