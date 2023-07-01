@@ -1,5 +1,5 @@
 
-# Wrangler (0.0.1)
+# Wrangler (0.0.2)
 
 ## Logging
 
