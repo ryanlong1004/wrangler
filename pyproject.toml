@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools", "versioneer[toml]"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wrangler"
+description = "A python package to convert yaml files to lua scripts for the Global Workflow Project."
+readme = "README.md"
+version = "0.0.1"
+dependencies = ["PyYAML"]
+authors = [{ name = "Ryan Long", email = "ryan.long@noaa.gov" }]
+keywords = ["globalworkflow", "global workflow", "esmf"]
+license = { file = "LICENSE" }
+requires-python = ">=3.7"
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+]
+
+[project.optional-dependencies]
+dev = ["black", "bumpver", "isort", "pip-tools", "pytest"]
+
+
+[project.scripts]
+wrangler = "src.wrangler.__main__:main"
+
+[project.urls]
+"Homepage" = "https://github.com/pypa/wrangler"
+"Bug Tracker" = "https://github.com/pypa/wrangler/issues"
+
+[tool.setuptools.packages]
+find = {} # Scan the project directory with the default parameters
+
+[tool.versioneer]
+VCS = "git"
+style = "pep440"
+versionfile_source = "src/wrangler/_version.py"
+versionfile_build = "wrangler/_version.py"
+tag_prefix = ""
+# parentdir_prefix = "myproject-"
