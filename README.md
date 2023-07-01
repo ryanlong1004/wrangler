@@ -43,3 +43,9 @@ A general logging best practice—in any language—is to use log rotation. This
 Fortunately, you don’t have to implement this by hand in Python. Instead, use the RotatingFileHandler class instead of the regular FileHandler one.
 
 [Source](https://www.loggly.com/use-cases/6-python-logging-best-practices-you-should-be-aware-of/)
+
+### Builds
+
+`apt install python3.10-venv`
+`python -m build`
+
