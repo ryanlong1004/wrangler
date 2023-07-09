@@ -8,7 +8,7 @@
       - None
     modules:
       - prod_util/${prod_util_ver}
-eobs:
+eobsss:
   - help: 
       - Load environment to run eobs job on WCOSS2
     whatis: 
@@ -16,7 +16,7 @@ eobs:
     modules:
       - cray-mpich/${cray_mpich_ver}
       - cray-pals/${cray_pals_ver}     
-prep:
+preppp:
   - help: 
       - Load environment to run prep job on WCOSS2
     whatis: 

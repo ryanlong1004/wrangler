@@ -62,12 +62,10 @@ def extra(value: list[dict[str, Any]]):
     """converts extra dicts"""
     if not value:
         return []
-    print("EXTRA")
     results = []
     for item in value:
         for key, _value in item.items():
             results.extend(itertools.chain(MAPPER_PROPS[key](ensure_list(_value))))
-    print(results)
     return results
 
 

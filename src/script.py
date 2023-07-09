@@ -26,9 +26,12 @@ class Script:
     def get_as_lua(self, key):
         """return keys value as Lua command"""
         results = []
-        for item in self.data:
-            results.extend(list(MAPPER_PROPS[key](item.get(key, None))))
-        return results
+        try:
+            for item in self.data:
+                results.extend(list(MAPPER_PROPS[key](item.get(key, None))))
+            return results
+        except AttributeError:
+            return results
 
 
 def find_script(name: str, scripts: list[Script]) -> Script:
