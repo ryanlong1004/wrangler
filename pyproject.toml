@@ -49,5 +49,5 @@ tag = true
 push = true
 
 [tool.bumpver.file_patterns]
-"pyproject.toml" = ['']
+"pyproject.toml" = ['version = "{current_version}"']
 "README.md" = ["{pep440_version}"]
