@@ -1,6 +1,0 @@
-help([[Load environment to run eobs job on WCOSS2]])
-load(pathJoin("PrgEnv-intel", "None"))
-load(pathJoin("cray-mpich", "None"))
-load(pathJoin("cray-pals", "None"))
-load(pathJoin("prod_util", "None"))
-whatis("eobs run environment")
