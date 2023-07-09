@@ -84,7 +84,7 @@ def write_script_to_lua(
     done so explicitly.
     """
     with open(
-        Path(output_path / f"{script.name}.lua"), "w", encoding="utf-8"
+        Path(output_path / Path(f"{script.name}.lua")), "w", encoding="utf-8"
     ) as _output:
         _output.writelines(script.get_as_lua("help"))
         _output.writelines(prepend_script)
