@@ -2,7 +2,7 @@
 import os
 from pathlib import Path
 
-from src.__main__ import load_scripts_from_yamls, write_scripts_to_lua
+from src.__main__ import load_scripts_from_yamls, write_script_to_lua
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))  # This is your Project Root
 
@@ -28,10 +28,13 @@ def test_main(monkeypatch):
         monkeypatch.setenv(key, value)
 
     os.environ["prepobs_ver"] = "11"
-    input_path = Path(ROOT_DIR / Path("fixtures/test.yaml"))
+    input_path = Path(ROOT_DIR / Path("fixtures/test3.yaml"))
     output_path = Path(ROOT_DIR / Path("fixtures/output/"))
     output_path.mkdir(parents=True, exist_ok=True)
 
-    script = load_scripts_from_yamls([input_path])
-    write_scripts_to_lua(output_path, script)
+    scripts = load_scripts_from_yamls([input_path])
+
+    for script in scripts:
+        for item in script:
+            write_script_to_lua(output_path, [], [], item)
     assert False

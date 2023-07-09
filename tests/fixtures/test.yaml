@@ -1,7 +1,7 @@
 common:
-  modulepaths:
+  - modulepaths:
     - None
-  modules:
+    modules:
     - PrgEnv-intel/${PrgEnv_intel_ver}
     - craype/${craype_ver}
     - intel/${intel_ver}
@@ -17,24 +17,26 @@ eobs:
     - netcdf/${netcdf_ver}
     - crtm/${crtm_ver}
 prep:
-  help: Load environment to run prep job on WCOSS2
-  whatis: prep run environment
-  modules:
-    - hdf5/${hdf5_ver}
-    - netcdf/${netcdf_ver}
-  extra:
-    - - modulepaths:
+  - help: 
+      - Load environment to run prep job on WCOSS2
+    whatis: 
+      - prep run environment
+    modules:
+      - hdf5/${hdf5_ver}
+      - netcdf/${netcdf_ver}
+    ^extra:
+      - modulepaths:
         - /lfs/h2/emc/global/save/emc.global/git/prepobs/module
-      - modules:
+        modules:
         - prepobs/${prepobs_ver}
         - prepobs/${prepobs_ver}
         - prepobs/${prepobs_ver}
-      - environment:
+        environment:
         - a: b
         - A: A
         - b: B
-    - - modulepaths:
+      - modulepaths:
         - /lfs/h2/emc/global/save/emc.global/git/prepobs/module
-      - modules:
+        modules:
         - prepobs/${prepobs_ver}
         - prepobs/${prepobs_ver}

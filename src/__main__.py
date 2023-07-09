@@ -71,15 +71,6 @@ def get_content(_script: Script) -> list[str]:
     )
 
 
-def write_scripts_to_lua(
-    output_path: Path, scripts: Generator[Script, None, None]
-) -> None:
-    """outputs lua scripts from Script instances to output_path"""
-    prepend_script, postpend_script = get_bookend_scripts_content(list(scripts))
-    for script in [x for x in scripts if "^" not in x.name]:
-        write_script_to_lua(output_path, prepend_script, postpend_script, script)
-
-
 def write_script_to_lua(
     output_path: Path,
     prepend_script: list[str],
@@ -111,6 +102,13 @@ def scripts_to_process(scripts) -> list[Script]:
     return [x for x in scripts if KEYWORD_INDICATOR not in x.name]
 
 
+def process_scripts(output_path, scripts):
+    """converts Script instances to Lua commands and writes output"""
+    prepend_script, postpend_script = get_bookend_scripts_content(scripts)
+    for script in scripts_to_process(scripts):
+        write_script_to_lua(output_path, prepend_script, postpend_script, script)
+
+
 def main():
     """main execution"""
     data = get_cli_input()
@@ -120,9 +118,7 @@ def main():
     logger.info("output path is %s", output_path)
     output_path.mkdir(parents=True, exist_ok=True)
     for scripts in load_scripts_from_yamls(_input):
-        prepend_script, postpend_script = get_bookend_scripts_content(scripts)
-        for script in scripts_to_process(scripts):
-            write_script_to_lua(output_path, prepend_script, postpend_script, script)
+        process_scripts(output_path, scripts)
 
 
 if __name__ == "__main__":

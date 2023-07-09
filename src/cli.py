@@ -18,10 +18,10 @@ parser.add_argument("paths", nargs="*", type=pathlib.Path)
 parser.add_argument("--output-path", type=pathlib.Path)
 
 
-def files_from_path(_path):
+def files_from_path(_path) -> list[pathlib.Path]:
     """returns generator of files from path"""
     if _path.is_dir():
-        return [_file for _file in glob.glob(_path, recursive=True)]
+        return list(_file for _file in glob.glob(_path, recursive=True))
     return []
 
 
