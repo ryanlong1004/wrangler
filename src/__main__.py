@@ -3,7 +3,7 @@
 import itertools
 import logging
 from pathlib import Path
-from typing import Tuple
+from typing import Generator, Tuple
 
 import yaml
 
@@ -20,17 +20,12 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 
-def load_scripts_from_yamls(_paths: list[Path]) -> list[Script]:
+def load_scripts_from_yamls(_paths: list[Path]) -> Generator[list[Script], None, None]:
     """instantiates Script instances from yaml files"""
-    results = []
     for _path in _paths:
-        logger.info("extracting scripts from %s", _path)
+        logging.info("loading %s", _path)
         with open(_path, "r", encoding="utf-8") as _file:
-            results.extend(
-                (Script(name, data) for (name, data) in yaml.safe_load(_file).items())
-            )
-    return results
-
+            yield ([Script(name, data) for (name, data) in yaml.safe_load(_file).items()])
 
 def get_bookend_scripts_content(scripts: list[Script]) -> Tuple[list[str], ...]:
     """returns the prepend and postpend scripts if thy exist"""
@@ -56,9 +51,9 @@ def get_content(_script: Script) -> list[str]:
     )
 
 
-def write_scripts_to_lua(output_path: Path, scripts: list[Script]) -> None:
+def write_scripts_to_lua(output_path: Path, scripts: Generator[Script, None, None]) -> None:
     """outputs lua scripts from Script instances to output_path"""
-    prepend_script, postpend_script = get_bookend_scripts_content(scripts)
+    prepend_script, postpend_script = get_bookend_scripts_content(list(scripts))
     for script in [x for x in scripts if "^" not in x.name]:
         write_script_to_lua(output_path, prepend_script, postpend_script, script)
 
@@ -95,7 +90,10 @@ def main():
     _input = Path("./tests/fixtures/test3.yaml")
     output_path = Path("./temp")
     output_path.mkdir(parents=True, exist_ok=True)
-    write_scripts_to_lua(output_path, load_scripts_from_yamls([_input]))
+    for scripts in load_scripts_from_yamls([_input]):
+        prepend_script, postpend_script = get_bookend_scripts_content(scripts)
+        for script in [x for x in scripts if "^" not in x.name]:
+            write_script_to_lua(output_path, prepend_script, postpend_script, script)
 
 
 if __name__ == "__main__":
