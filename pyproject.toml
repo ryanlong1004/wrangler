@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "gwf_wrangler"
 description = "A python package to convert yaml files to lua scripts for the Global Workflow Project."
 readme = "README.md"
-version = "0.0.2"
+version = "0.0.3"
 dependencies = ["PyYAML"]
 authors = [{ name = "Ryan Long", email = "ryan.long@noaa.gov" }]
 keywords = ["globalworkflow", "global workflow", "esmf"]
