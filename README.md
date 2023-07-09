@@ -12,7 +12,7 @@ It might be difficult to decide which level to assign each event. Fortunately, t
 - WARNING: You should use this level when something unexpected or unusual happens. It’s not an error, but you should pay attention to it.
 - ERROR: This level is for things that go wrong but are usually recoverable (e.g., internal exceptions you can handle or APIs returning error results).
 - CRITICAL: You should use this level in a doomsday scenario. The application is unusable. At this level, someone should be woken up at 2 a.m.
-
+        
 ### Include a Timestamp for Each Log Entry
 
 Knowing something happened without knowing when it happened is only marginally better than not knowing about the event at all. Make sure to add a timestamp to your log entries to make the lives of the people who use logs for troubleshooting easier. Doing so also allows developers to analyze the log entries to obtain insights/analytics about user behavior.

@@ -23,7 +23,18 @@ prep:
     - hdf5/${hdf5_ver}
     - netcdf/${netcdf_ver}
   extra:
-    modulepaths:
-      - /lfs/h2/emc/global/save/emc.global/git/prepobs/module
-    modules:
-      - prepobs/${prepobs_ver}
+    - - modulepaths:
+        - /lfs/h2/emc/global/save/emc.global/git/prepobs/module
+      - modules:
+        - prepobs/${prepobs_ver}
+        - prepobs/${prepobs_ver}
+        - prepobs/${prepobs_ver}
+      - environment:
+        - a: b
+        - A: A
+        - b: B
+    - - modulepaths:
+        - /lfs/h2/emc/global/save/emc.global/git/prepobs/module
+      - modules:
+        - prepobs/${prepobs_ver}
+        - prepobs/${prepobs_ver}
