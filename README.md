@@ -1,5 +1,5 @@
 
-# Wrangler (0.0.5)
+# Wrangler (0.0.7)
 
 ## Logging
 
