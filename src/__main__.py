@@ -44,7 +44,7 @@ def get_prepend_script(scripts):
 def get_postpend_script(scripts):
     """returns the lua content of a postpend script if it exists"""
     try:
-        return get_content(find_script("^pre", scripts))
+        return get_content(find_script("^post", scripts))
     except ScriptNotFound:
         return []
 
@@ -91,8 +91,8 @@ def write_script_to_lua(
         _output.writelines(script.get_as_lua("modulepaths"))
         _output.writelines(script.get_as_lua("modules"))
         _output.writelines(script.get_as_lua("environment"))
-        _output.writelines(script.get_as_lua("^extra"))
         _output.writelines(postpend_script)
+        _output.writelines(script.get_as_lua("^extra"))
         _output.writelines(script.get_as_lua("whatis"))
 
 
