@@ -59,6 +59,7 @@ def _help(values: list[str]) -> list[str]:
     return [f"help([[{value}]])\n" for value in ensure_list(values)]
 
 
+# deprecated 0.0.8
 def extra(value: list[dict[str, Any]]):
     """converts extra dicts"""
     if not value:
