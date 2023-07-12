@@ -91,8 +91,8 @@ def write_script_to_lua(
         _output.writelines(script.get_as_lua("modulepaths"))
         _output.writelines(script.get_as_lua("modules"))
         _output.writelines(script.get_as_lua("environment"))
-        _output.writelines(postpend_script)
         _output.writelines(script.get_as_lua("^extra"))
+        _output.writelines(postpend_script)
         _output.writelines(script.get_as_lua("whatis"))
 
 

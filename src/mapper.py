@@ -29,7 +29,8 @@ def modules(values: list[str]) -> list[str]:
         return results
     for value in ensure_list(values):
         key, _value = value.split("/")
-        results.append(f'load(pathJoin("{key}", "{os.getenv(_value[2: -1])}"))\n')
+        env_value = get_environment_value(_value[2: -1])
+        results.append(f'load(pathJoin("{key}", "{env_value}"))\n')
     return results
 
 
@@ -67,6 +68,15 @@ def extra(value: list[dict[str, Any]]):
         for key, _value in item.items():
             results.extend(itertools.chain(MAPPER_PROPS[key](ensure_list(_value))))
     return results
+
+def get_environment_value(key) -> str:
+    """returns the os environment value if it exists or a lua environment lookup 
+    if it does not"""
+    value = os.getenv(key)
+    if value is None:
+        value = f"os.getenv({key})"
+    return value
+
 
 
 MAPPER_PROPS = {

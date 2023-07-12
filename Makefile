@@ -18,6 +18,8 @@ format:
 	docformatter
 
 publish:
+	python -m build
+	twine check dist/*
 	twine upload dist/* --verbose --skip-existing
 
 lint:
