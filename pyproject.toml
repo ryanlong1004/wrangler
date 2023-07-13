@@ -25,6 +25,7 @@ dev = ["black", "bumpver", "isort", "pip-tools", "pytest", "twine", "build"]
 [project.scripts]
 wrangler = "src.__main__:main"
 
+
 [project.urls]
 "Homepage" = "https://github.com/pypa/gwf-wrangler"
 "Bug Tracker" = "https://github.com/pypa/gwf-wrangler/issues"

@@ -1,39 +1,44 @@
-^pre:
+^pre: &pre
   - modulepaths:
-      - None
+      - 1st
     modules:
-      - PrgEnv-intel/${PrgEnv_intel_ver}
+      - 1PrgEnv-intel/${PrgEnv_intel_ver}
+  - modulepaths:
+      - 2nd
+    modules:
+      - 2PrgEnv-intel/${PrgEnv_intel_ver}
 ^post:
   - modulepaths:
       - None
     modules:
       - prod_util/${prod_util_ver}
 prep:
-  - help: Load environment to run prep job on WCOSS2
+    help: Load environment to run prep job on WCOSS2
     whatis: prep run environment
-    ^extra:
+    content:
+      <<: *pre
       - modulepaths:
-        - None
+          - None
         modules:
-        - hdf5/${hdf5_ver}
-        - python/${python_ver}
-        - netcdf/${netcdf_ver}
-        - crtm/${crtm_ver}
+          - hdf5/${hdf5_ver}
+          - python/${python_ver}
+          - netcdf/${netcdf_ver}
+          - crtm/${crtm_ver}
       - modulepaths:
-        - "/extra1/lfs/h2/emc/global/save/emc.global/git/prepobs/module"
+          - "/extra1/lfs/h2/emc/global/save/emc.global/git/prepobs/module"
         modules:
-        - extra1/${prepobs_ver}
-        - extra1/${prepobs_ver}
-        - extra1/${prepobs_ver}
+          - extra1/${prepobs_ver}
+          - extra1/${prepobs_ver}
+          - extra1/${prepobs_ver}
         environment:
-        - a: extra1
-        - b: extra1
+          - a: extra1
+          - b: extra1
       - modulepaths:
-        - "/extra2/lfs/h2/emc/global/save/emc.global/git/prepobs/module"
+          - "/extra2/lfs/h2/emc/global/save/emc.global/git/prepobs/module"
         modules:
-        - extra2/${prepobs_ver}
-        - extra2/${prepobs_ver}
-        - extra2/${prepobs_ver}
+          - extra2/${prepobs_ver}
+          - extra2/${prepobs_ver}
+          - extra2/${prepobs_ver}
         environment:
-        - a: extra2
-        - b: extra2
+          - a: extra2
+          - b: extra2
